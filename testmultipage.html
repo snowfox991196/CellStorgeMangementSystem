@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<div class="ui-tab">
+<div class="ui-tab" id="dispgrid">
     <!-- 具体消息内容 -->
 </div>
 <div class="paging">
@@ -46,13 +46,16 @@
         <tr class="page-font">
             <td><a href="#" class="firstPage" onclick="page_click(this)"> 首页 </a></td>
             <td><a href="#" class="beforePage" onclick="page_click(this)"> 上一页 </a></td>
-            <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" class="currentPage" value="1">页</td>
+            <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" class="currentPage" id="currentPage" value="1">页</td>
             <td>&nbsp;&nbsp;&nbsp;共<input type="button" class="totalPage" value="1">页&nbsp;&nbsp;|&nbsp;&nbsp;</td>
             <td><a href="#" class="nextPage" onclick="page_click(this)"> 下一页 </a></td>
             <td><a href="#" class="lastPage" onclick="page_click(this)"> 尾页 </a></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jmppge"></td>
+            <td><input type="button" value="跳转" onclick="jmppge"></td>
         </tr>
     </table>
 </div>
+
 <script type="text/javascript">
     var totalPage = 20; //一共多少页
     var currentPage = 1;//当前页码
@@ -60,34 +63,9 @@
 
     //前端获取后台数据并呈现方法
     function information_display() {
-        var data = [
-            {"title": "第一页-今日日志"},
-        ];
-        $(".ui-tab").empty()
-        $.each(data, function (index, n) {
-            var infor_title = "<table  class=\"title\">"
-                + "<tr >"
-                + "<td>" + data[index].title + "</td>"
-                + "</tr>"
-                + "</table>";
-            $(".ui-tab").append(infor_title)
-        })
-    }
-
-    //为测试分页功能代码，进行网络请求后便不需要
-    function information_display2() {
-        var data = [
-            {"title": "第二页-今日日志反反复复付付付"}
-        ];
-        $(".ui-tab").empty()
-        $.each(data, function (index, n) {
-            var infor_title = "<table  class=\"title\">"
-                + "<tr >"
-                + "<td>" + data[index].title + "</td>"
-                + "</tr>"
-                + "</table>";
-            $(".ui-tab").append(infor_title)
-        })
+        var disp = document.getElementById("dispgrid")
+        var frame = document.getElementById("currentPage")
+        disp.innerText = frame.value
     }
 
     //初始化加载，分页首页数据，输入：每页多少条数据，当前页（默认为1）；输出：当前页数据和总页数
@@ -111,7 +89,7 @@
             pageNumber = parseInt($('.currentPage').attr("value"));
             if (pageNumber > 1) {
                 $(".currentPage").attr("value", pageNumber - 1)
-                information_display()
+                //information_display()
             } else {
                 $(".beforePage").attr("disabled", false)
             }
@@ -122,7 +100,7 @@
             pageNumber = parseInt($('.currentPage').attr("value"));
             if (pageNumber < totalPage) {
                 $(".currentPage").attr("value", pageNumber + 1)
-                information_display2()
+                //information_display2()
             } else {
                 $(".nextPage").attr("disabled", false)
             }
@@ -133,6 +111,11 @@
             pageNumber = parseInt($('.currentPage').attr("value"));
             $(".currentPage").attr("value", totalPage)
         }
+        information_display()
+    }
+
+    function jmppge() {
+
     }
 </script>
 </body>
