@@ -1,0 +1,22 @@
+div {
+    border: 0px solid aqua;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#main{
+    border: 0px solid aqua;
+    width: fit-content;
+    margin: unset;
+}
+
+#bind_cache_div{
+    width: auto;
+    margin: 0 auto;
+}
+
+#bind_cache{
+    background-color: aliceblue;
+    width: 100%;
+    text-align: center;
+}

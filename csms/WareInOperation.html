@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>入库操作管理</title>
+    <script src = "../js/basketgrid.js"></script>
+    <script src = "../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/basketgrid.css" />
+</head>
+<body>
+<div id="main">
+    <div>
+        <table>
+            <tr>
+                <td><div>入库单号：</div></td>
+                <td><div id="disp_orderid">[display order ID]</div></td>
+            </tr>
+            <tr>
+                <td><div>入库数量：</div></td>
+                <td><div id="disp_ordersum">[display order SUM]</div></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><div id="select_basket">提篮号：</div></td>
+                <td><div id="select_box">层号：</div></td>
+                <td><input type="button" id="searchindb" value="查询" onclick="bb_change()"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="position_selecttable"></div>
+    <div>
+        <table>
+            <tr>
+                <td><div id="position_display"></div></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="autonext" checked="true">连续绑定</input></td>
+            </tr>
+        </table>
+    </div>
+    <div id="bar_operation"></div>
+    <div id="bind_cache_div">
+        <table id="bind_cache">
+            <tr>
+                <th>序号</th>
+                <th>货位号</th>
+                <th>管号</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><input type="button" id="submit_btn" value="提交" onclick="submit_f()"></td>
+                <td><input type="button" id="cancle_btn" value="取消" onclick="cancle_btn_f()"></td>
+            </tr>
+        </table>
+    </div>
+    <script>pageinit(6,5)</script>
+    <script>
+
+    </script>
+</div>
+</body>
+
+</html>
