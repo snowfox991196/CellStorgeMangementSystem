@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>细胞入库单</title>
+    <style>
+        body{
+            width: 360px;
+            background-color: #fff6ec;
+        }
+        .he1{
+            font-family: "Microsoft YaHei UI";
+            font-size: 22px;
+            position: relative;
+            left: calc(50% - 60px);
+        }
+        .css2{
+            width: 120px;
+        }
+        .css3{
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="he1">编辑入库单</div>
+    <div class="css3">
+        <table class="css3" border="0">
+            <tr>
+                <td class="css2">入库单号：</td>
+                <td><input type="text" id="orderid" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td class="css2">样品名称：</td>
+                <td><textarea id="simplename" rows="2" cols="30"></textarea></td>
+            </tr>
+            <tr>
+                <td class="css2">生产批号：</td>
+                <td><input type="text" id="batch" size="30"></td>
+            </tr>
+            <tr>
+                <td class="css2">寄存人：</td>
+                <td><input type="text" id="userid" size="30"></td>
+            </tr>
+            <tr>
+                <td class="css2">计划数量：</td>
+                <td><input type="text" id="plannum" size="30"></td>
+            </tr>
+            <tr>
+                <td class="css2">计划入库日期：</td>
+                <td><input type="text" id="plandate" size="30"></td>
+            </tr>
+            <tr>
+                <td class="css2">备注：</td>
+                <td><textarea id="others" rows="5" cols="30"></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <div class="he1"><input type="button" value="提交"><input type="button" value="取消" onclick="canclef()"></div>
+</div>
+</body>
+<script>
+    function canclef() {
+        parent.window.document.getElementById("topFrame").remove()
+    }
+</script>
+</html>

@@ -2,121 +2,18 @@
 <head>
     <title> 消息呈现 </title>
     <meta charset="UTF-8">
-    <script src="/js/jquery.min.js"></script>
-    <style type="text/css">
-        .title {
-            padding: 5px;
-            background: #F7F7F7;
-            text-align: center;
-            vertical-align: middle;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            margin-top: 10px;
-            color: #616161;
-            font-size: 16px;
-        }
-
-        .font {
-            color: #00a5e0;
-            font-size: 14px;
-        }
-
-        .paging {
-            width: 1660px;
-            height: 40px;
-            background: #EFF3F8;
-            padding-top: 8px;
-            padding-left: 30px;
-            margin-top: 20px;
-        }
-
-        .page-font {
-            color: #292929;
-            font-size: 14px;
+    <style>
+        #editor {
+            width: 400px;
+            position: fixed;
+            left: calc(50% - 200px);
+            top: calc(50% - 200px);
         }
     </style>
 </head>
 <body>
-<div class="ui-tab" id="dispgrid">
-    <!-- 具体消息内容 -->
-</div>
-<div class="paging">
-    <!-- 分页布局-->
-    <table>
-        <tr class="page-font">
-            <td><a href="#" class="firstPage" onclick="page_click(this)"> 首页 </a></td>
-            <td><a href="#" class="beforePage" onclick="page_click(this)"> 上一页 </a></td>
-            <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" class="currentPage" id="currentPage" value="1">页</td>
-            <td>&nbsp;&nbsp;&nbsp;共<input type="button" class="totalPage" value="1">页&nbsp;&nbsp;|&nbsp;&nbsp;</td>
-            <td><a href="#" class="nextPage" onclick="page_click(this)"> 下一页 </a></td>
-            <td><a href="#" class="lastPage" onclick="page_click(this)"> 尾页 </a></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label
-                    for="jmppge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="jmppge"></td>
-            <td><input type="button" value="跳转" onclick="jmppge"></td>
-        </tr>
-    </table>
+<div id="editor">
+    <iframe src="/csms/WareInOrderEditor.html" width="400px" height= "400px" id="topFrame"></iframe>
 </div>
 
-<script type="text/javascript">
-    var totalPage = 20; //一共多少页
-    var currentPage = 1;//当前页码
-    var information_lenght = []
-
-    //前端获取后台数据并呈现方法
-    function information_display() {
-        var disp = document.getElementById("dispgrid")
-        var frame = document.getElementById("currentPage")
-        disp.innerText = frame.value
-    }
-
-    //初始化加载，分页首页数据，输入：每页多少条数据，当前页（默认为1）；输出：当前页数据和总页数
-    window.onload = function () {
-        $(".totalPage").attr("value", totalPage)
-        information_display()
-    }
-
-    //上一页、下一页，首页和尾页的单击触发事件
-    function page_click(item) {
-        console.log(item)
-        //首页
-        if ($(item).attr("class") === "firstPage") {
-            console.log("firstPage")
-            pageNumber = parseInt($('.currentPage').attr("value"));
-            $(".currentPage").attr("value", 1)
-        }
-        //上一页
-        else if ($(item).attr("class") === "beforePage") {
-            console.log("beforePage")
-            pageNumber = parseInt($('.currentPage').attr("value"));
-            if (pageNumber > 1) {
-                $(".currentPage").attr("value", pageNumber - 1)
-                //information_display()
-            } else {
-                $(".beforePage").attr("disabled", false)
-            }
-        }
-        //下一页
-        else if ($(item).attr("class") === "nextPage") {
-            console.log("nextPage")
-            pageNumber = parseInt($('.currentPage').attr("value"));
-            if (pageNumber < totalPage) {
-                $(".currentPage").attr("value", pageNumber + 1)
-                //information_display2()
-            } else {
-                $(".nextPage").attr("disabled", false)
-            }
-        }
-        //尾页
-        else {
-            console.log("lastPage")
-            pageNumber = parseInt($('.currentPage').attr("value"));
-            $(".currentPage").attr("value", totalPage)
-        }
-        information_display()
-    }
-
-    function jmppge() {
-
-    }
-</script>
 </body>

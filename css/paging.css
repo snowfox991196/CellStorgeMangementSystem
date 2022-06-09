@@ -36,3 +36,12 @@
 .r2css {
     background-color: #b1d2e7;
 }
+
+ #editor {
+     width: 400px;
+     position: fixed;
+     left: calc(50% - 200px);
+     top: calc(50% - 200px);
+ }
+
+

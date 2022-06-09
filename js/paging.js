@@ -164,7 +164,8 @@ function jmppge() {
 
 //创建新入库单代码
 function neworder() {
-    alert("neworder !")
+    var opt = document.getElementById("editor")
+    opt.innerHTML = "<iframe src=\"../csms/WareInOrderEditor.html\" width=\"400px\" height= \"400px\" id=\"topFrame\"></iframe>"
 }
 
 //操作按钮动作函数
