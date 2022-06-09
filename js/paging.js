@@ -1,3 +1,5 @@
+//入库单据管理页面JS
+
 var totalPage = 1; //一共多少页
 var currentPage = 1;//当前页码
 var information_lenght = []

@@ -1,3 +1,4 @@
+//入库操作页面JS
 //初始化页面函数，参数：提篮数，层数，行数，列数
 function pageinit(basket, box) {
     //临时变量
