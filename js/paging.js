@@ -20,6 +20,7 @@ function information_display(page) {
             result = JSON.parse(data)
         }
     })
+    console.log(result)
     //清除原数据
     disp.innerText = ""
     for (var i = 0; i < disp.childElementCount; i++) {
