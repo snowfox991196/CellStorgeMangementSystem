@@ -22,17 +22,17 @@ function information_display(page) {
     })
     //清除原数据
     disp.innerText = ""
-    for (var i=0;i<disp.childElementCount;i++){
+    for (var i = 0; i < disp.childElementCount; i++) {
         disp.childNodes[i].remove()
     }
     //显示新数据
     var datatable = document.createElement("table")
     datatable.innerHTML = "<tr><th>单号</th><th>日期</th><th>品名</th><th>批号</th><th>寄存人</th><th>计划数量</th>" +
         "<th>单据状态</th><th>操作</th></tr>"
-    for (i=0;i<result.length;i++){
+    for (i = 0; i < result.length; i++) {
         var optr = document.createElement("tr")
         var optc
-        for (var j=0;j<result[i].length;j++){
+        for (var j = 0; j < result[i].length; j++) {
             optc = document.createElement("td")
             optc.innerText = result[i][j]
             optr.appendChild(optc)
@@ -41,23 +41,46 @@ function information_display(page) {
         optc = document.createElement("td")
         //详细信息按钮
         var optbtn1 = document.createElement("input")
-        optbtn1.type="button"
-        optbtn1.value="详细信息/修改"
-        optbtn1.name="btnmoreinfo"
-        optbtn1.onclick=btnmoreinfo
+        optbtn1.type = "button"
+        optbtn1.value = "详细信息/修改"
+        optbtn1.name = "btnmoreinfo"
+        optbtn1.onclick = function (){
+            operations(this)
+        }
         optc.appendChild(optbtn1)
+        //确认按钮
+        var optbtn3 = document.createElement("input")
+        optbtn3.type = "button"
+        optbtn3.value = "确认"
+        optbtn3.name = "btnconfi"
+        optbtn3.onclick = function (){
+            operations(this)
+        }
+        optc.appendChild(optbtn3)
+        //入库按钮
+        var optbtn4 = document.createElement("input")
+        optbtn4.type = "button"
+        optbtn4.value = "入库"
+        optbtn4.name = "btnstartopt"
+        optbtn4.onclick = function (){
+            operations(this)
+        }
+        optc.appendChild(optbtn4)
         //删除按钮
         var optbtn2 = document.createElement("input")
-        optbtn2.type="button"
-        optbtn2.value="删除"
-        optbtn2.name="btndelete"
-        optbtn2.onclick=btndelete
+        optbtn2.type = "button"
+        optbtn2.value = "删除"
+        optbtn2.name = "btndelete"
+        optbtn2.onclick = function (){
+            operations(this)
+        }
         optc.appendChild(optbtn2)
+
         //添加格子
         optr.appendChild(optc)
-        if (i%2 === 0){
+        if (i % 2 === 0) {
             optr.className = "r2css"
-        }else{
+        } else {
             optr.className = "r1css"
         }
         //刷训表格
@@ -133,19 +156,24 @@ function jmppge() {
     if (tojmp.value > 0 && tojmp.value <= totalPage) {
         document.getElementById("currentPage").value = tojmp.value
         information_display()
-    }else{
+    } else {
         alert("无效的页码！")
     }
 }
 
-function btnmoreinfo() {
-    alert("more info !")
-}
-
-function btndelete() {
-    alert("delete !")
-}
-
+//创建新入库单代码
 function neworder() {
     alert("neworder !")
+}
+
+//操作按钮动作函数
+//orderid为当前行单号，element.name为操作类型，由按钮属性定义
+//orderstat为当前行单据状态。
+function operations(element) {
+    var orderid = element.parentElement.parentElement.childNodes[0].innerText
+    var orderstat = element.parentElement.parentElement.childNodes[6].innerText
+    //此处替换操作代码，if-then-elseif-else
+    alert(orderid+" -- "+orderstat+" -- " + element.name)
+    //刷新显示
+    information_display()
 }
