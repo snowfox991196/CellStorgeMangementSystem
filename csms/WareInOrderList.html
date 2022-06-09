@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>入库单据管理</title>
+    <link rel="stylesheet" href="../css/paging.css" />
+    <script src = "../js/jquery.min.js"></script>
+    <script src = "../js/paging.js"></script>
 </head>
 <body>
-<div id="mainlist">
-
+<div>
+    <input type="button" value="新增入库单" onclick="neworder()">
 </div>
+<div class="ui-tab" id="dispgrid">
+    test
+    <!-- 具体消息内容 -->
+</div>
+<div class="paging">
+    <!-- 分页布局-->
+    <table>
+        <tr class="page-font">
+            <td><a href="#" class="firstPage" onclick="page_click(this)"> 首页 </a></td>
+            <td><a href="#" class="beforePage" onclick="page_click(this)"> 上一页 </a></td>
+            <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" class="currentPage" id="currentPage" value="1">页</td>
+            <td>&nbsp;&nbsp;&nbsp;共<input type="button" class="totalPage" value="1">页&nbsp;&nbsp;|&nbsp;&nbsp;</td>
+            <td><a href="#" class="nextPage" onclick="page_click(this)"> 下一页 </a></td>
+            <td><a href="#" class="lastPage" onclick="page_click(this)"> 尾页 </a></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jmpto"></td>
+            <td><input type="button" value="跳转" onclick=jmppge()></td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>
