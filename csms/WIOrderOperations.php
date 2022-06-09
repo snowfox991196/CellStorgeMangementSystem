@@ -9,7 +9,7 @@ $dbhelper = new DBHelper();
 $orderid = $_POST["orderid"];
 $ordersum = $_POST["operation"];
 
-$sql = "SELECT count(t.orderID) FROM csmsdb.wi_order t  where orderID = ".$orderid;
+$sql = "SELECT count(t.orderID) FROM csmsdb.wi_order t  where orderID = '".$orderid."'";
 $data = $dbhelper->sqlSelect($sql);
 
 if ($data->num_rows > 0) {
