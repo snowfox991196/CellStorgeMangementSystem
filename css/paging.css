@@ -40,8 +40,9 @@
  #editor {
      width: 400px;
      position: fixed;
-     left: calc(50% - 200px);
-     top: calc(50% - 200px);
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%,-50%);
  }
 
 

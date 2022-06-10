@@ -45,7 +45,7 @@ function information_display(page) {
         optbtn1.type = "button"
         optbtn1.value = "详细信息/修改"
         optbtn1.name = "btnmoreinfo"
-        optbtn1.onclick = function (){
+        optbtn1.onclick = function () {
             operations(this)
         }
         optc.appendChild(optbtn1)
@@ -53,8 +53,8 @@ function information_display(page) {
         var optbtn3 = document.createElement("input")
         optbtn3.type = "button"
         optbtn3.value = "确认"
-        optbtn3.name = "btnconfi"
-        optbtn3.onclick = function (){
+        optbtn3.name = "btnconfirm"
+        optbtn3.onclick = function () {
             operations(this)
         }
         optc.appendChild(optbtn3)
@@ -63,7 +63,7 @@ function information_display(page) {
         optbtn4.type = "button"
         optbtn4.value = "入库"
         optbtn4.name = "btnstartopt"
-        optbtn4.onclick = function (){
+        optbtn4.onclick = function () {
             operations(this)
         }
         optc.appendChild(optbtn4)
@@ -72,7 +72,7 @@ function information_display(page) {
         optbtn2.type = "button"
         optbtn2.value = "删除"
         optbtn2.name = "btndelete"
-        optbtn2.onclick = function (){
+        optbtn2.onclick = function () {
             operations(this)
         }
         optc.appendChild(optbtn2)
@@ -107,56 +107,32 @@ window.onload = function () {
     })
     totalPage = Math.ceil(result / 10)
     //初始化页数
-    $(".totalPage").attr("value", totalPage)
+    document.getElementById("totalPage").value = totalPage
+    var pge = getQueryVariable("page")
+    if (pge !== null && pge <= totalPage && pge > 0) {
+        currentPage = pge
+    } else if (pge === null) {
+        currentPage = 1
+    } else if(pge > totalPage){
+        currentPage = totalPage
+    } else if(pge <=0 ){
+        currentPage = 1
+    }
+    document.getElementById("currentPage").value = currentPage
+    document.getElementById("firstPage").href = "/csms/WareInOrderList.html?page=1"
+    document.getElementById("lastPage").href = "/csms/WareInOrderList.html?page=" + parseInt(totalPage)
+    document.getElementById("nextPage").href = "/csms/WareInOrderList.html?page=" + (parseInt(currentPage) + 1)
+    document.getElementById("beforePage").href = "/csms/WareInOrderList.html?page=" + (parseInt(currentPage) - 1)
     information_display()
 }
 
 //上一页、下一页，首页和尾页的单击触发事件
-function page_click(item) {
-    console.log(item)
-    //首页
-    if ($(item).attr("class") === "firstPage") {
-        console.log("firstPage")
-        pageNumber = parseInt($('.currentPage').attr("value"));
-        $(".currentPage").attr("value", 1)
-    }
-    //上一页
-    else if ($(item).attr("class") === "beforePage") {
-        console.log("beforePage")
-        pageNumber = parseInt($('.currentPage').attr("value"));
-        if (pageNumber > 1) {
-            $(".currentPage").attr("value", pageNumber - 1)
-            //information_display()
-        } else {
-            $(".beforePage").attr("disabled", false)
-        }
-    }
-    //下一页
-    else if ($(item).attr("class") === "nextPage") {
-        console.log("nextPage")
-        pageNumber = parseInt($('.currentPage').attr("value"));
-        if (pageNumber < totalPage) {
-            $(".currentPage").attr("value", pageNumber + 1)
-            //information_display2()
-        } else {
-            $(".nextPage").attr("disabled", false)
-        }
-    }
-    //尾页
-    else {
-        console.log("lastPage")
-        pageNumber = parseInt($('.currentPage').attr("value"));
-        $(".currentPage").attr("value", totalPage)
-    }
-    information_display()
-    document.getElementById("jmpto").value = ""
-}
 
 function jmppge() {
     var tojmp = document.getElementById("jmpto")
     if (tojmp.value > 0 && tojmp.value <= totalPage) {
         document.getElementById("currentPage").value = tojmp.value
-        information_display()
+        window.location.href = "/csms/WareInOrderList.html?page=" + tojmp.value
     } else {
         alert("无效的页码！")
     }
@@ -164,8 +140,7 @@ function jmppge() {
 
 //创建新入库单代码
 function neworder() {
-    var opt = document.getElementById("editor")
-    opt.innerHTML = "<iframe src=\"../csms/WareInOrderEditor.html\" width=\"400px\" height= \"400px\" id=\"topFrame\"></iframe>"
+    newframe(null)
 }
 
 //操作按钮动作函数
@@ -175,7 +150,38 @@ function operations(element) {
     var orderid = element.parentElement.parentElement.childNodes[0].innerText
     var orderstat = element.parentElement.parentElement.childNodes[6].innerText
     //此处替换操作代码，if-then-elseif-else
-    alert(orderid+" -- "+orderstat+" -- " + element.name)
+    if (element.name === "btnmoreinfo") {
+        newframe(orderid)
+    } else {
+        alert(orderid + " -- " + orderstat + " -- " + element.name)
+    }
     //刷新显示
     information_display()
+}
+
+function newframe(orderid) {
+    var opt = document.getElementById("editor")
+    var newframe = document.createElement("iframe")
+    if (orderid !== null) {
+        newframe.src = "../csms/WareInOrdereditor.html?orderid=" + orderid
+    } else {
+        newframe.src = "../csms/WareInOrdereditor.html"
+    }
+    newframe.width = "400px"
+    newframe.height = "400px"
+    newframe.id = "topFrame"
+    opt.appendChild(newframe)
+}
+
+//获取HTTP-GET参数
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1)
+    var vars = query.split("&")
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=")
+        if (pair[0] === variable) {
+            return pair[1]
+        }
+    }
+    return null
 }

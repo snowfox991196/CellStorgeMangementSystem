@@ -1,0 +1,17 @@
+body{
+    width: 360px;
+    background-color: #fff6ec;
+}
+.he1{
+    font-family: "Microsoft YaHei UI";
+    font-size: 22px;
+    position: relative;
+    left: calc(50% - 60px);
+}
+.css2{
+    width: 120px;
+}
+.css3{
+    position: relative;
+    width: 100%;
+}

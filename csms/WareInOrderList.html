@@ -19,12 +19,12 @@
     <!-- 分页布局-->
     <table>
         <tr class="page-font">
-            <td><a href="#" class="firstPage" onclick="page_click(this)"> 首页 </a></td>
-            <td><a href="#" class="beforePage" onclick="page_click(this)"> 上一页 </a></td>
-            <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" class="currentPage" id="currentPage" value="1">页</td>
-            <td>&nbsp;&nbsp;&nbsp;共<input type="button" class="totalPage" value="1">页&nbsp;&nbsp;|&nbsp;&nbsp;</td>
-            <td><a href="#" class="nextPage" onclick="page_click(this)"> 下一页 </a></td>
-            <td><a href="#" class="lastPage" onclick="page_click(this)"> 尾页 </a></td>
+            <td><a href="#" id="firstPage"> 首页 </a></td>
+            <td><a href="#" id="beforePage"> 上一页 </a></td>
+            <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" id="currentPage" value="1">页</td>
+            <td>&nbsp;&nbsp;&nbsp;共<input type="button" id="totalPage" value="1">页&nbsp;&nbsp;|&nbsp;&nbsp;</td>
+            <td><a href="#" id="nextPage"> 下一页 </a></td>
+            <td><a href="#" id="lastPage"> 尾页 </a></td>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jmpto"></td>
             <td><input type="button" value="跳转" onclick=jmppge()></td>
         </tr>
