@@ -1,13 +1,22 @@
 //入库操作页面JS
+window.onload = function (){
+    var orderid = getQueryVariable("orderid")
+    if (orderid === null){
+        alert("请选择单据！")
+        history.go(-1)
+    }
+    //临时变量
+    var opt_tmp;
+    opt_tmp = document.getElementById("disp_orderid")
+    opt_tmp.innerText = orderid;
+    opt_tmp = document.getElementById("disp_ordersum")
+    opt_tmp.innerText = "test";
+    pageinit(6,5)
+}
 //初始化页面函数，参数：提篮数，层数，行数，列数
 function pageinit(basket, box) {
     //临时变量
     var opt_tmp;
-    opt_tmp = document.getElementById("disp_orderid")
-    opt_tmp.innerText = "CI2206001";
-    opt_tmp = document.getElementById("disp_ordersum")
-    opt_tmp.innerText = "5";
-
     //添加提篮下拉菜单
     var sele_basket = document.createElement("select")
     sele_basket.id = "basket_selecter"
@@ -367,4 +376,17 @@ function getColRow(bsk, box) {
         }
     })
     return result;
+}
+
+//获取HTTP-GET参数
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1)
+    var vars = query.split("&")
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=")
+        if (pair[0] === variable) {
+            return pair[1]
+        }
+    }
+    return null
 }

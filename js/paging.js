@@ -148,12 +148,12 @@ function neworder() {
 //orderstat为当前行单据状态。
 function operations(element) {
     var orderid = element.parentElement.parentElement.childNodes[0].innerText
-    var orderstat = element.parentElement.parentElement.childNodes[6].innerText
+    var operation =  element.name
     //此处替换操作代码，if-then-elseif-else
-    if (element.name === "btnmoreinfo") {
+    if (operation === "btnmoreinfo") {
         newframe(orderid)
     } else {
-        alert(orderid + " -- " + orderstat + " -- " + element.name)
+        window.location.href = "/csms/WIOrderOperations.php?orderid=" + orderid + "&operation=" + operation
     }
     //刷新显示
     information_display()
