@@ -62,7 +62,7 @@ if ($method == "insert" and $stat_sql == 0) {
     $data = $dbhelper->sqlSelect($sql);
 
 }else{
-    echo "警告：单据状态不正确！". "<br>";
+    echo "<script>alert('据状态不正确！')</script>";
 }
 
 echo "<script>history.go(-1)</script>";
