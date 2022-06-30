@@ -80,7 +80,36 @@ function getOrderInfo(orderid) {
 }
 
 function submitf() {
-    alert("submit")
+
+    //alert(document.getElementById("orderID").value)
+
+    var params = {
+        "method": method,
+        "orderID": document.getElementById("orderID").value,
+        "simple_name": document.getElementById("simple_name").value,
+        "batch": document.getElementById("batch").value,
+        "user": document.getElementById("user").value,
+        "plan_stock": document.getElementById("plan_stock").value,
+        "plandate": document.getElementById("plandate").value,
+        "stock": document.getElementById("stock").value,
+        "stat": document.getElementById("stat").value,
+        "others": document.getElementById("others").value
+    };
+
+    var temp = parent.window.document.createElement("form");
+    temp.action = "./inorderSubmit.php";
+    temp.method = "post";
+    temp.style.display = "none";
+
+    for (var x in params) {
+        var opt = document.createElement("textarea");
+        opt.name = x;
+        opt.value = params[x];
+        temp.appendChild(opt);
+    }
+    parent.window.document.body.appendChild(temp);
+    temp.submit();
+
     parent.window.document.getElementById("topFrame").remove()
 }
 
