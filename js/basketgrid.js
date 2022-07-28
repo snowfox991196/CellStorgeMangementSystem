@@ -6,11 +6,12 @@ window.onload = function (){
         history.go(-1)
     }
     //临时变量
+    var stock_left = getOrderLeft(orderid);
     var opt_tmp;
     opt_tmp = document.getElementById("disp_orderid")
     opt_tmp.innerText = orderid;
     opt_tmp = document.getElementById("disp_ordersum")
-    opt_tmp.innerText = "test";
+    opt_tmp.innerText = stock_left;
     pageinit(6,5)
 }
 //初始化页面函数，参数：提篮数，层数，行数，列数
@@ -366,6 +367,21 @@ function cancle_btn_f() {
 function getColRow(bsk, box) {
     var result;
     var gurl = 'getgrid.php?bsk=' + bsk + '&box=' + box;
+    $.ajax({
+        url: gurl,
+        type: 'GET',
+        data: {},
+        async: false,
+        success: function (data) {
+            result = JSON.parse(data);
+        }
+    })
+    return result;
+}
+
+function getOrderLeft(orderid){
+    var result;
+    var gurl = 'getOrderLeft.php?orderid=' + orderid
     $.ajax({
         url: gurl,
         type: 'GET',
