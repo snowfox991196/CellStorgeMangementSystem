@@ -32,4 +32,4 @@ foreach ($dataincom as $value) {
     echo $arr[2] . "@" . $arr[1] . "插入成功<br>";
 }
 
-
+header("location:/csms/WareInOrderList.html");
