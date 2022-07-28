@@ -6,6 +6,7 @@
     <script src = "../js/stocktable.js"></script>
     <script src = "../js/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/stocktable.css" />
+    <link rel="stylesheet" href="../css/paging.css" />
 </head>
 <body>
     <h1>库存明细表</h1>
@@ -14,10 +15,36 @@
             <tr>
                 <td>入库单号：<input id="fiter_orderid"></td>
                 <td>样品名称：<input id="fiter_name"></td>
-                <td><input id="fiter_submit" type="button" value="查询"></td>
+                <td><input id="fiter_submit" type="button" value="查询" onclick=flushpage()></td>
             </tr>
         </table>
     </div>
-    <div id="maindiv"></div>
+    <div id="maindiv">
+        <table id="maintable">
+            <tr>
+                <th>入库单号</th>
+                <th>样品名称</th>
+                <th>批号</th>
+                <th>寄存人</th>
+                <th>库存状态</th>
+                <th>当前库存</th>
+            </tr>
+        </table>
+    </div>
+    <div class="paging">
+        <!-- 分页布局-->
+        <table>
+            <tr class="page-font">
+                <td><a href="#" id="firstPage"> 首页 </a></td>
+                <td><a href="#" id="beforePage"> 上一页 </a></td>
+                <td>&nbsp;&nbsp;|&nbsp;&nbsp;第<input type="button" id="currentPage" value="1">页</td>
+                <td>&nbsp;&nbsp;&nbsp;共<input type="button" id="totalPage" value="1">页&nbsp;&nbsp;|&nbsp;&nbsp;</td>
+                <td><a href="#" id="nextPage"> 下一页 </a></td>
+                <td><a href="#" id="lastPage"> 尾页 </a></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jmpto"></td>
+                <td><input type="button" value="跳转" onclick=flushpage()></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

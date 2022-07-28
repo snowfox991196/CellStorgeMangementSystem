@@ -13,7 +13,7 @@ $dbhelper = new DBHelper();
 if ($page != null) {
     $sql = "SELECT t.* FROM csmsdb.instock t where simple_name like '%"
         .$simplename."%' and t.orderID like '%".$orderid."%' LIMIT "
-        . (($page - 1) * 50) . ",50";  #分页查询
+        . (($page - 1) * 10) . ",10";  #分页查询
 
     $data = $dbhelper->sqlSelect($sql);
     $arr = [];
