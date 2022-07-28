@@ -19,6 +19,15 @@ if ($orderid != null) {
             }
         }
     }
+    $sql = "SELECT count(t.serial) FROM csmsdb.stocks t where OrderID like '" . $orderid . "'";  #查询
+    $data = $dbhelper->sqlSelect($sql);
+    if ($data->num_rows > 0) {
+        while ($row = $data->fetch_assoc()) {
+            foreach ($row as $key => $value) {
+                $arr["stock"] = $value;
+            }
+        }
+    }
 }
 
 echo json_encode($arr);
